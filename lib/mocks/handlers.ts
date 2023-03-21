@@ -1,27 +1,27 @@
-import {graphql} from "msw";
-import {GetUserDocument} from "@/lib/graphql/types/graphql";
+import { graphql } from "msw";
+import { GetUserDocument } from "@/lib/graphql/types/graphql";
 
-const users : {id: string, name: string, email: string}[] = [
+const users: { id: string; name: string; email: string }[] = [
   {
     id: "1",
     name: "テストユーザー１",
-    email: "test1@example.com"
+    email: "test1@example.com",
   },
   {
     id: "2",
     name: "テストユーザー１",
-    email: "test1@example.com"
+    email: "test1@example.com",
   },
   {
     id: "3",
     name: "テストユーザー１",
-    email: "test1@example.com"
+    email: "test1@example.com",
   },
-]
+];
 
 export const handlers = [
   graphql.query(GetUserDocument, (req, res, ctx) => {
-    const {id} = req.variables;
+    const { id } = req.variables;
     const user = users.find((user) => user.id === id);
     if (!user) {
       return res(
@@ -36,9 +36,9 @@ export const handlers = [
       ctx.data({
         user: {
           __typename: "User",
-          ...user
+          ...user,
         },
       })
     );
-  })
+  }),
 ];

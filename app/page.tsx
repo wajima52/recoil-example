@@ -1,18 +1,18 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
 import { useQuery } from "@apollo/client";
 import { GetUserDocument } from "@/lib/graphql/types/graphql";
-import {getApolloClient} from "@/lib/apollo/client";
+import { getApolloClient } from "@/lib/apollo/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const client  = getApolloClient()
+  const client = getApolloClient();
   const { data, loading, error } = useQuery(GetUserDocument, {
     variables: { id: "1" },
-    client
+    client,
   });
 
   console.log(data?.user.name);

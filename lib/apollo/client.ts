@@ -3,7 +3,7 @@ import { onError } from "@apollo/client/link/error";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
-let apolloClient : ApolloClient<any> | null = null
+let apolloClient: ApolloClient<any> | null = null;
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -16,7 +16,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_API_HOST + '/graphql',
+  uri: process.env.NEXT_PUBLIC_API_HOST + "/graphql",
   credentials: "same-origin",
 });
 
@@ -34,4 +34,4 @@ export const getApolloClient = () => {
   }
 
   return apolloClient;
-}
+};
