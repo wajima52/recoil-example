@@ -15,6 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
   pageProps: any;
 }) {
+  if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+    require("../lib/mocks");
+  }
   const apolloClient = useApollo(pageProps);
 
   return (
