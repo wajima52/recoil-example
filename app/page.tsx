@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
+import { useQuery } from "@apollo/client";
+import { GetUserDocument } from "@/lib/graphql/types/graphql";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { data, loading, error } = useQuery(GetUserDocument, {
+    variables: { id: "1" },
+  });
+
+  console.log(data?.user.name);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
